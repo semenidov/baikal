@@ -1,11 +1,13 @@
 // @ts-check
 import { defineConfig } from 'astro/config';
 import tailwindcss from '@tailwindcss/vite';
+import sitemap from '@astrojs/sitemap';
 
 // https://astro.build/config
 export default defineConfig({
-  // Placeholder — swap for the real domain once the agency name/domain is chosen.
-  site: 'https://baikal.example.com',
+  // Боевой адрес. Поменять на кастомный домен, когда подключим.
+  site: 'https://baikal-tour.vercel.app',
+  integrations: [sitemap()],
   vite: {
     plugins: [tailwindcss()],
   },

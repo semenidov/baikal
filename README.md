@@ -1,43 +1,55 @@
-# Astro Starter Kit: Minimal
+# Байкал — лендинг турагентства
 
-```sh
-npm create astro@latest -- --template minimal
-```
+Одностраничный сайт небольшого турагентства из Иркутска: авторские зимние туры на Байкал.
+Цель — доверие и заявка в Telegram, без онлайн-оплаты и бронирования.
 
-> 🧑‍🚀 **Seasoned astronaut?** Delete this file. Have fun!
+🌐 **Прод:** https://baikal-tour.vercel.app
 
-## 🚀 Project Structure
+## Стек
 
-Inside of your Astro project, you'll see the following folders and files:
+- [Astro](https://astro.build) — статическая генерация, 0 JS по умолчанию
+- [Tailwind CSS v4](https://tailwindcss.com) — стили
+- Шрифты Unbounded + Inter (самохостинг через `@fontsource`)
+- Оптимизация изображений — `astro:assets`
+- Хостинг — Vercel (авто-деплой из `main`)
+
+## Как редактировать контент
+
+**Весь текст и данные — в одном файле:** [`src/data/site.ts`](src/data/site.ts).
+Там название бренда, ссылка на Telegram, программы туров, FAQ, блоки «Основатели»,
+«Как всё устроено», «Доверие» и контакты. Дизайн-токены (цвета, шрифты) — в
+[`src/styles/global.css`](src/styles/global.css).
+
+## Структура
 
 ```text
-/
-├── public/
-├── src/
-│   └── pages/
-│       └── index.astro
-└── package.json
+src/
+├── data/site.ts        # ← контент (единая точка правки)
+├── styles/global.css   # дизайн-система «Ice-Blue»
+├── layouts/Base.astro  # <head>, метаданные, OpenGraph
+├── pages/index.astro    # сборка секций
+├── components/          # Header, Hero, Founders, Tours, Faq, Footer …
+└── assets/photos/       # фотографии (оптимизируются при сборке)
+public/                  # favicon, og-image, robots.txt
 ```
 
-Astro looks for `.astro` or `.md` files in the `src/pages/` directory. Each page is exposed as a route based on its file name.
+## Команды
 
-There's nothing special about `src/components/`, but that's where we like to put any Astro/React/Vue/Svelte/Preact components.
+| Команда           | Действие                                  |
+| :---------------- | :---------------------------------------- |
+| `npm install`     | Установить зависимости                    |
+| `npm run dev`     | Локальный сервер на `localhost:4321`      |
+| `npm run build`   | Сборка в `./dist/`                        |
+| `npm run preview` | Предпросмотр собранной версии             |
 
-Any static assets, like images, can be placed in the `public/` directory.
+## Деплой
 
-## 🧞 Commands
+Проект подключён к Vercel. Любой push в ветку `main` автоматически пересобирает
+и публикует сайт. Кастомный домен подключается в Vercel → Settings → Domains.
 
-All commands are run from the root of the project, from a terminal:
+## Что ещё предстоит
 
-| Command                   | Action                                           |
-| :------------------------ | :----------------------------------------------- |
-| `npm install`             | Installs dependencies                            |
-| `npm run dev`             | Starts local dev server at `localhost:4321`      |
-| `npm run build`           | Build your production site to `./dist/`          |
-| `npm run preview`         | Preview your build locally, before deploying     |
-| `npm run astro ...`       | Run CLI commands like `astro add`, `astro check` |
-| `npm run astro -- --help` | Get help using the Astro CLI                     |
-
-## 👀 Want to learn more?
-
-Feel free to check [our documentation](https://docs.astro.build) or jump into our [Discord server](https://astro.build/chat).
+- Финальное название бренда и домен (сейчас плейсхолдер «Байкал»)
+- Реальные фото основателей в карточках Егора и Сергея
+- Отзывы туристов
+- Актуальные даты сезона и цены
