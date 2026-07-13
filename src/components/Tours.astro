@@ -1,0 +1,116 @@
+---
+import { Image } from 'astro:assets';
+import { tours, pricing, individualTour, site } from '../data/site';
+import coverLed from '../assets/photos/tour-led.jpg';
+import coverNovogodniy from '../assets/photos/tour-novogodniy.jpg';
+
+// Обложки по id тура (см. src/data/site.ts).
+const covers: Record<string, ImageMetadata> = {
+  'led-baikala': coverLed,
+  'novogodniy-baikal': coverNovogodniy,
+};
+---
+
+<section id="tours" class="bg-[var(--color-fill)]/40 py-20 sm:py-28">
+  <div class="container-page">
+    <p class="eyebrow">Наши туры</p>
+    <h2 class="mt-3 text-3xl sm:text-4xl">Две программы по зимнему Байкалу</h2>
+    <p class="mt-4 max-w-2xl text-[var(--color-muted)]">
+      От встречи с прозрачным льдом до Нового года на самом озере. Обе программы — про лёд, простор и места,
+      ради которых сюда едут. Выбирайте маршрут, а с датами поможем определиться.
+    </p>
+
+    <div class="mt-12 grid gap-6 lg:grid-cols-2">
+      {
+        tours.map((tour) => (
+          <article class="flex flex-col overflow-hidden rounded-2xl border border-[var(--color-line)] bg-[var(--color-surface)]">
+            {/* Обложка тура — реальное фото. */}
+            <Image
+              src={covers[tour.id]}
+              alt={`Тур «${tour.name}»`}
+              class="aspect-[16/9] w-full object-cover"
+              widths={[400, 640, 800]}
+              sizes="(min-width: 1024px) 40vw, 100vw"
+            />
+            <div class="flex flex-1 flex-col p-7">
+              <div class="flex flex-wrap items-baseline justify-between gap-2">
+                <h3 class="text-2xl">{tour.name}</h3>
+                <span class="text-sm font-semibold text-[var(--color-accent)]">{tour.duration}</span>
+              </div>
+              <p class="mt-1 text-sm text-[var(--color-muted)]">{tour.season}</p>
+              <p class="mt-4 leading-relaxed text-[var(--color-ink)]">{tour.summary}</p>
+
+              <details class="group mt-5 rounded-xl border border-[var(--color-line)]">
+                <summary class="flex cursor-pointer list-none items-center justify-between px-4 py-3 text-sm font-medium">
+                  <span>Программа по дням</span>
+                  <span class="text-[var(--color-accent)] transition-transform group-open:rotate-180">▾</span>
+                </summary>
+                <ol class="space-y-3 px-4 pb-4">
+                  {tour.days.map((d) => (
+                    <li class="text-sm leading-relaxed">
+                      <span class="font-semibold text-[var(--color-accent)]">{d.day}.</span>{' '}
+                      <span class="text-[var(--color-muted)]">{d.text}</span>
+                    </li>
+                  ))}
+                </ol>
+              </details>
+
+              <div class="mt-5 grid gap-4 sm:grid-cols-2">
+                <div>
+                  <p class="text-xs font-semibold uppercase tracking-wide text-[var(--color-muted)]">Включено</p>
+                  <ul class="mt-2 space-y-1 text-sm text-[var(--color-ink)]">
+                    {tour.included.map((i) => (
+                      <li class="flex gap-2">
+                        <span class="text-[var(--color-accent)]">✓</span>
+                        <span>{i}</span>
+                      </li>
+                    ))}
+                  </ul>
+                </div>
+                <div>
+                  <p class="text-xs font-semibold uppercase tracking-wide text-[var(--color-muted)]">Не входит</p>
+                  <ul class="mt-2 space-y-1 text-sm text-[var(--color-muted)]">
+                    {tour.notIncluded.map((i) => (
+                      <li class="flex gap-2">
+                        <span>–</span>
+                        <span>{i}</span>
+                      </li>
+                    ))}
+                  </ul>
+                </div>
+              </div>
+
+              <p class="mt-4 text-xs text-[var(--color-muted)]">
+                <span class="font-medium text-[var(--color-ink)]">Доп. по желанию:</span>{' '}
+                {tour.addons.join(' · ')}
+              </p>
+
+              <div class="mt-auto pt-6">
+                <div class="flex items-baseline gap-2">
+                  <span class="text-lg font-semibold">{pricing.hint}</span>
+                  <span class="text-xs text-[var(--color-muted)]">цена зависит от группы</span>
+                </div>
+                <a href={site.telegram} target="_blank" rel="noopener" class="btn-cta mt-4 w-full">
+                  Узнать даты и цену
+                </a>
+              </div>
+            </div>
+          </article>
+        ))
+      }
+    </div>
+
+    <p class="mx-auto mt-6 max-w-3xl text-center text-sm text-[var(--color-muted)]">
+      {pricing.note}
+    </p>
+
+    <!-- Индивидуальный тур -->
+    <div class="mt-8 rounded-2xl border border-dashed border-[var(--color-line)] bg-[var(--color-surface)] p-8 text-center">
+      <h3 class="text-xl">{individualTour.title}</h3>
+      <p class="mx-auto mt-3 max-w-2xl leading-relaxed text-[var(--color-muted)]">{individualTour.text}</p>
+      <a href={site.telegram} target="_blank" rel="noopener" class="btn-ghost mt-5">
+        {individualTour.cta}
+      </a>
+    </div>
+  </div>
+</section>

@@ -1,0 +1,20 @@
+---
+import { contact, site } from '../data/site';
+---
+
+<section id="contact" class="py-20 sm:py-28">
+  <div class="container-page">
+    <div
+      class="relative overflow-hidden rounded-3xl px-8 py-16 text-center sm:px-16"
+      style="background: radial-gradient(120% 120% at 50% 0%, #1e6c88 0%, #164f63 100%);"
+    >
+      <p class="eyebrow text-[#9fd0e0]">{contact.eyebrow}</p>
+      <h2 class="mx-auto mt-3 max-w-2xl text-3xl text-white sm:text-4xl">{contact.title}</h2>
+      <p class="mx-auto mt-5 max-w-xl leading-relaxed text-[#e3f0f5]">{contact.text}</p>
+      <a href={site.telegram} target="_blank" rel="noopener" class="btn-cta mt-8">
+        {contact.cta}
+      </a>
+      <p class="mt-4 text-sm text-[#bcdbe6]">{site.telegramHandle}</p>
+    </div>
+  </div>
+</section>

@@ -1,0 +1,32 @@
+---
+import { site } from '../data/site';
+---
+
+<header class="sticky top-0 z-50 border-b border-[var(--color-line)] bg-[var(--color-bg)]/85 backdrop-blur">
+  <div class="container-page flex h-16 items-center justify-between">
+    <a href="#top" class="flex items-center gap-2.5">
+      <span
+        class="grid h-8 w-8 place-items-center rounded-lg bg-[var(--color-accent)] text-sm font-bold text-white"
+        aria-hidden="true"
+      >
+        Б
+      </span>
+      <span class="flex flex-col leading-tight">
+        <span class="font-[var(--font-display)] text-base font-semibold">{site.brand}</span>
+        <span class="hidden text-[0.7rem] text-[var(--color-muted)] sm:block">{site.brandTagline}</span>
+      </span>
+    </a>
+
+    <nav class="hidden items-center gap-7 text-sm text-[var(--color-muted)] md:flex">
+      <a class="transition-colors hover:text-[var(--color-ink)]" href="#about">О нас</a>
+      <a class="transition-colors hover:text-[var(--color-ink)]" href="#tours">Туры</a>
+      <a class="transition-colors hover:text-[var(--color-ink)]" href="#how">Как это работает</a>
+      <a class="transition-colors hover:text-[var(--color-ink)]" href="#faq">Вопросы</a>
+    </nav>
+
+    <a href="#contact" class="btn-cta whitespace-nowrap px-4 text-sm sm:px-5">
+      <span class="sm:hidden">Написать</span>
+      <span class="hidden sm:inline">Написать в Telegram</span>
+    </a>
+  </div>
+</header>

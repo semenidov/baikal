@@ -1,0 +1,121 @@
+@import 'tailwindcss';
+
+/* Self-hosted fonts (no external CDN) */
+@import '@fontsource/unbounded/500.css';
+@import '@fontsource/unbounded/600.css';
+@import '@fontsource-variable/inter';
+
+/* ---------------------------------------------------------------------------
+   Дизайн-система «Ice-Blue» — зимний Байкал.
+   Меняешь палитру/шрифты здесь, один раз.
+--------------------------------------------------------------------------- */
+@theme {
+  /* Поверхности */
+  --color-bg: #f5f9fb; /* холодный почти-белый фон */
+  --color-surface: #ffffff; /* карточки */
+  --color-fill: #d7e9f1; /* светлая ледяная заливка */
+
+  /* Текст */
+  --color-ink: #0e1f2b; /* основной сине-графитовый */
+  --color-muted: #4a6272; /* вторичный */
+
+  /* Акценты */
+  --color-accent: #1e6c88; /* глубокий бирюзово-синий (Байкал/лёд) */
+  --color-accent-strong: #164f63; /* тёмный вариант для hover/линков */
+  --color-line: #c3d9e3; /* тонкие границы */
+
+  /* CTA — тёплый янтарь, только для primary-кнопок */
+  --color-cta: #e8a23d;
+  --color-cta-hover: #d18e2c;
+  --color-cta-ink: #2a1c05;
+
+  /* Шрифты */
+  --font-display: 'Unbounded', system-ui, sans-serif;
+  --font-sans: 'Inter Variable', 'Inter', system-ui, sans-serif;
+}
+
+@layer base {
+  html {
+    scroll-behavior: smooth;
+  }
+
+  body {
+    background-color: var(--color-bg);
+    color: var(--color-ink);
+    font-family: var(--font-sans);
+    -webkit-font-smoothing: antialiased;
+    text-rendering: optimizeLegibility;
+  }
+
+  h1,
+  h2,
+  h3 {
+    font-family: var(--font-display);
+    font-weight: 600;
+    letter-spacing: -0.01em;
+    line-height: 1.1;
+  }
+
+  ::selection {
+    background-color: var(--color-accent);
+    color: #fff;
+  }
+}
+
+@layer components {
+  /* Базовый контейнер секции */
+  .container-page {
+    width: 100%;
+    max-width: 72rem;
+    margin-inline: auto;
+    padding-inline: 1.25rem;
+  }
+
+  /* Primary CTA (Telegram) */
+  .btn-cta {
+    display: inline-flex;
+    align-items: center;
+    justify-content: center;
+    gap: 0.5rem;
+    background-color: var(--color-cta);
+    color: var(--color-cta-ink);
+    font-weight: 600;
+    padding: 0.85rem 1.6rem;
+    border-radius: 0.75rem;
+    transition:
+      background-color 0.18s ease,
+      transform 0.18s ease;
+  }
+  .btn-cta:hover {
+    background-color: var(--color-cta-hover);
+    transform: translateY(-1px);
+  }
+
+  /* Secondary / ghost */
+  .btn-ghost {
+    display: inline-flex;
+    align-items: center;
+    justify-content: center;
+    gap: 0.5rem;
+    border: 1px solid var(--color-line);
+    color: var(--color-ink);
+    font-weight: 500;
+    padding: 0.85rem 1.6rem;
+    border-radius: 0.75rem;
+    transition:
+      border-color 0.18s ease,
+      background-color 0.18s ease;
+  }
+  .btn-ghost:hover {
+    border-color: var(--color-accent);
+    background-color: var(--color-fill);
+  }
+
+  .eyebrow {
+    text-transform: uppercase;
+    letter-spacing: 0.16em;
+    font-size: 0.78rem;
+    font-weight: 600;
+    color: var(--color-accent);
+  }
+}

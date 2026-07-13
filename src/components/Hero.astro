@@ -1,0 +1,42 @@
+---
+import { Image } from 'astro:assets';
+import { hero } from '../data/site';
+import heroImg from '../assets/photos/hero-ice-sunset.jpg';
+---
+
+<section id="top" class="relative overflow-hidden">
+  <!-- Реальное фото: трещины во льду Байкала на закате. -->
+  <Image
+    src={heroImg}
+    alt="Трещины во льду озера Байкал на закате"
+    class="absolute inset-0 -z-20 h-full w-full object-cover"
+    widths={[640, 960, 1280, 1920]}
+    sizes="100vw"
+    loading="eager"
+  />
+  <!-- Затемнение для контраста текста. -->
+  <div
+    class="absolute inset-0 -z-10"
+    style="background: linear-gradient(90deg, rgba(11,31,43,.82) 0%, rgba(11,31,43,.55) 45%, rgba(11,31,43,.15) 100%);"
+    aria-hidden="true"
+  >
+  </div>
+
+  <div class="container-page py-24 sm:py-32 lg:py-40">
+    <p class="eyebrow text-[#cfe7f0]">{hero.eyebrow}</p>
+    <h1 class="mt-4 max-w-3xl text-4xl text-white sm:text-5xl lg:text-6xl">
+      {hero.title}
+    </h1>
+    <p class="mt-6 max-w-xl text-lg leading-relaxed text-[#e3f0f5]">
+      {hero.subtitle}
+    </p>
+    <div class="mt-9 flex flex-wrap items-center gap-3">
+      <a href="#contact" class="btn-cta">
+        {hero.ctaPrimary}
+      </a>
+      <a href="#tours" class="btn-ghost border-white/40 text-white hover:bg-white/10">
+        {hero.ctaSecondary}
+      </a>
+    </div>
+  </div>
+</section>
