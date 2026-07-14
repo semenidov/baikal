@@ -13,6 +13,25 @@ const { title = site.meta.title, description = site.meta.description } = Astro.p
 // Абсолютные URL для мета-тегов (Astro.site задан в astro.config.mjs).
 const canonical = new URL(Astro.url.pathname, Astro.site);
 const ogImage = new URL('/og-image.jpg', Astro.site);
+
+// Структурированные данные (Schema.org) — помогают Google понять, что это за
+// сайт. Цену намеренно не указываем: по брифу цена «уточняется в переписке»,
+// фиксированное число в разметке могло бы попасть в сниппет поиска и разойтись
+// с тем, что говорим на самой странице.
+const jsonLd = {
+  '@context': 'https://schema.org',
+  '@type': 'TravelAgency',
+  name: site.brand,
+  url: String(Astro.site),
+  logo: new URL('/icon-512.png', Astro.site).toString(),
+  image: ogImage.toString(),
+  description: site.meta.description,
+  areaServed: {
+    '@type': 'Place',
+    name: 'озеро Байкал, Иркутская область',
+  },
+  sameAs: [site.telegram],
+};
 ---
 
 <!doctype html>
@@ -50,6 +69,11 @@ const ogImage = new URL('/og-image.jpg', Astro.site);
     <meta name="twitter:image" content={ogImage} />
 
     <link rel="icon" href="/favicon.svg" type="image/svg+xml" />
+    <link rel="apple-touch-icon" href="/apple-touch-icon.png" />
+    <link rel="manifest" href="/manifest.webmanifest" />
+
+    <!-- Structured data: помогает Google/Яндексу распознать агентство. -->
+    <script type="application/ld+json" set:html={JSON.stringify(jsonLd)} is:inline />
   </head>
   <body>
     <slot />
