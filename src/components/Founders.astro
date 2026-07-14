@@ -1,5 +1,19 @@
 ---
+import { Image } from 'astro:assets';
 import { founders } from '../data/site';
+import photoEgor from '../assets/photos/founder-egor.png';
+import photoSergey from '../assets/photos/founder-sergey.jpg';
+
+// Сопоставление site.ts person.photo -> реальный файл.
+const photos: Record<string, ImageMetadata> = {
+  guide: photoEgor,
+  sergey: photoSergey,
+};
+// Точка фокуса кадра — оба фото не студийные, лица не по центру.
+const focus: Record<string, string> = {
+  guide: 'center 30%',
+  sergey: 'center 22%',
+};
 ---
 
 <section id="about" class="py-20 sm:py-28">
@@ -16,11 +30,13 @@ import { founders } from '../data/site';
       {
         founders.people.map((person) => (
           <article class="flex flex-col overflow-hidden rounded-2xl border border-[var(--color-line)] bg-[var(--color-surface)]">
-            {/* Слот под реальное фото founder'а — заменить градиент на <Image>. */}
-            <div
-              class="aspect-[4/3] w-full"
-              style="background: linear-gradient(135deg, #1e6c88 0%, #4a90a8 55%, #d7e9f1 100%);"
-              aria-hidden="true"
+            <Image
+              src={photos[person.photo]}
+              alt={`${person.name} — ${person.role}`}
+              class="aspect-[4/3] w-full object-cover"
+              style={`object-position: ${focus[person.photo] ?? 'center'}`}
+              widths={[400, 640, 800]}
+              sizes="(min-width: 768px) 40vw, 100vw"
             />
             <div class="flex flex-1 flex-col p-6">
               <h3 class="text-xl">{person.name}</h3>
