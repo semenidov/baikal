@@ -1,5 +1,6 @@
 ---
 import '../styles/global.css';
+import Analytics from '@vercel/analytics/astro';
 import { site } from '../data/site';
 
 interface Props {
@@ -48,5 +49,16 @@ const ogImage = new URL('/og-image.jpg', Astro.site);
   </head>
   <body>
     <slot />
+    <Analytics />
+    <!-- Считаем клики по Telegram как конверсию (с указанием секции). -->
+    <script>
+      import { track } from '@vercel/analytics';
+      document.querySelectorAll('a[href*="t.me/"]').forEach((el) => {
+        el.addEventListener('click', () => {
+          const section = el.closest('[id]')?.id || 'header';
+          track('telegram_click', { section });
+        });
+      });
+    </script>
   </body>
 </html>
