@@ -5,8 +5,6 @@ import imgUaz from '../assets/photos/gallery-uaz.jpg';
 import imgCircle from '../assets/photos/tour-led.jpg';
 import imgSunsetSwim from '../assets/photos/gallery-sunset-swim.jpg';
 import imgSerge from '../assets/photos/gallery-serge.jpg';
-import imgCliff from '../assets/photos/gallery-cliff.jpg';
-import imgSummer from '../assets/photos/gallery-summer.jpg';
 
 // Сопоставление id из site.ts с реальными файлами.
 const photos: Record<string, ImageMetadata> = {
@@ -14,8 +12,6 @@ const photos: Record<string, ImageMetadata> = {
   'ice-circle': imgCircle,
   'sunset-swim': imgSunsetSwim,
   serge: imgSerge,
-  cliff: imgCliff,
-  summer: imgSummer,
 };
 ---
 
@@ -24,10 +20,10 @@ const photos: Record<string, ImageMetadata> = {
     <p class="eyebrow">Галерея</p>
     <h2 class="mt-3 text-3xl sm:text-4xl">Каким вы увидите Байкал</h2>
     <p class="mt-4 max-w-2xl text-[var(--color-muted)]">
-      Настоящие кадры из наших поездок — зимой и летом.
+      Настоящие кадры из наших зимних поездок.
     </p>
 
-    <div class="mt-10 grid grid-cols-2 gap-3 sm:gap-4 lg:grid-cols-3">
+    <div class="mt-10 grid grid-cols-2 gap-3 sm:gap-4">
       {
         gallery.map((item) => (
           <figure class="group relative overflow-hidden rounded-xl">
@@ -35,8 +31,8 @@ const photos: Record<string, ImageMetadata> = {
               src={photos[item.id]}
               alt={item.caption}
               class="aspect-[4/3] w-full object-cover transition-transform duration-500 group-hover:scale-105"
-              widths={[300, 500, 700]}
-              sizes="(min-width: 1024px) 33vw, 50vw"
+              widths={[360, 560, 760]}
+              sizes="(min-width: 768px) 46vw, 48vw"
             />
             <figcaption class="absolute inset-x-0 bottom-0 bg-gradient-to-t from-black/60 to-transparent p-3 text-xs font-medium text-white">
               {item.caption}
