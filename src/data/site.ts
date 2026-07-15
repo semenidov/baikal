@@ -234,10 +234,10 @@ export const faq = {
 
 /** Галерея. Порядок и подписи; сами файлы импортируются в Gallery.astro. */
 export const gallery = [
-  { id: 'uaz', caption: 'Выезд по льду на УАЗ' },
+  { id: 'uaz', caption: 'Туда, куда не ходят автобусы' },
   { id: 'ice-circle', caption: 'Зеркальный лёд Байкала' },
-  { id: 'sunset-swim', caption: 'Закат и купание на льду' },
-  { id: 'serge', caption: 'Сэргэ — священные столбы на Ольхоне' },
+  { id: 'sunset-swim', caption: 'Купание там, где вода —2°C' },
+  { id: 'serge', caption: 'Шаманские места силы' },
 ];
 
 export const contact = {
