@@ -28,19 +28,20 @@ src/
 ├── styles/global.css   # дизайн-система «Ice-Blue»
 ├── layouts/Base.astro  # <head>, метаданные, OpenGraph
 ├── pages/index.astro    # сборка секций
-├── components/          # Header, Hero, Founders, Tours, Faq, Footer …
+├── components/          # Header, Hero, Founders, Tours, HowItWorks,
+│                         #   Trust, Gallery, Reviews, Faq, ContactCta, Footer
 └── assets/photos/       # фотографии (оптимизируются при сборке)
 public/                  # favicon, og-image, robots.txt
 ```
 
 ## Команды
 
-| Команда           | Действие                                  |
-| :---------------- | :---------------------------------------- |
-| `npm install`     | Установить зависимости                    |
-| `npm run dev`     | Локальный сервер на `localhost:4321`      |
-| `npm run build`   | Сборка в `./dist/`                        |
-| `npm run preview` | Предпросмотр собранной версии             |
+| Команда           | Действие                             |
+| :---------------- | :----------------------------------- |
+| `npm install`     | Установить зависимости               |
+| `npm run dev`     | Локальный сервер на `localhost:4321` |
+| `npm run build`   | Сборка в `./dist/`                   |
+| `npm run preview` | Предпросмотр собранной версии        |
 
 ## Деплой
 

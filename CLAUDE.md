@@ -1,22 +1,54 @@
-## Development
+# Байкал — лендинг турагентства — CLAUDE.md
 
-When starting the dev server, use background mode:
+> Проектные инструкции. Наследует корневой CLAUDE.md рабочего пространства и
+> `@_workspace/development.md`. Здесь — только дельта, специфичная для этого проекта.
 
-```
-astro dev --background
-```
+## О ПРОЕКТЕ
 
-Manage the background server with `astro dev stop`, `astro dev status`, and `astro dev logs`.
+- Что это: одностраничный лендинг небольшого турагентства из Иркутска (авторские зимние туры на Байкал). Цель — доверие и заявка в Telegram, без онлайн-оплаты и бронирования.
+- Статус: в разработке (прод на плейсхолдер-домене, контент не финализирован).
 
-## Documentation
+## ГЛАВНЫЕ ФАЙЛЫ — ЧИТАТЬ В ПЕРВУЮ ОЧЕРЕДЬ
 
-Full documentation: https://docs.astro.build
+- `DOCUMENTATION.md` — полная актуальная документация проекта. **Сверяйся с ней вместо перечитывания всего кода.**
+- `DECISIONS.md` — журнал принятых решений и договорённостей. **Не переспрашивай то, что там уже зафиксировано.**
 
-Consult these guides before working on related tasks:
+## КОМАНДЫ
 
-- [Adding pages, dynamic routes, or middleware](https://docs.astro.build/en/guides/routing/)
-- [Working with Astro components](https://docs.astro.build/en/basics/astro-components/)
-- [Using React, Vue, Svelte, or other framework components](https://docs.astro.build/en/guides/framework-components/)
-- [Adding or managing content](https://docs.astro.build/en/guides/content-collections/)
-- [Adding styles or using Tailwind](https://docs.astro.build/en/guides/styling/)
-- [Supporting multiple languages](https://docs.astro.build/en/guides/internationalization/)
+Пакетный менеджер — **npm** (не pnpm; см. «Стек»).
+
+- dev: `npm run dev` — локальный сервер на `localhost:4321`
+- build: `npm run build` — сборка в `./dist/`
+- preview: `npm run preview` — предпросмотр собранной версии
+- typecheck: `npm run check` — `astro check`
+- lint: `npm run lint` (ESLint 10, flat config) · автофикс `npm run lint:fix`
+- format: `npm run format` (Prettier) · проверка `npm run format:check`
+- test: не настроены
+
+## СТЕК (только отличия от дефолта)
+
+- Astro (SSG, 0 JS по умолчанию) вместо Next.js/Vite — статический лендинг.
+- Пакетный менеджер — **npm** (лок-файл `package-lock.json`, CI на `npm ci`), а не pnpm.
+- Tailwind CSS v4 через `@tailwindcss/vite`.
+- Node ≥ 22.12 (`engines` в `package.json`).
+
+## СТРУКТУРА
+
+- Контент и все тексты — единая точка правки: [`src/data/site.ts`](src/data/site.ts).
+- Дизайн-токены (цвета, шрифты, система «Ice-Blue») — [`src/styles/global.css`](src/styles/global.css).
+- Секции — [`src/components/`](src/components/); сборка страницы — [`src/pages/index.astro`](src/pages/index.astro); каркас `<head>`/OG — [`src/layouts/Base.astro`](src/layouts/Base.astro).
+- Фото — [`src/assets/photos/`](src/assets/photos/) (оптимизируются при сборке через `astro:assets`).
+
+## ГОТЧИ И ДОГОВОРЁННОСТИ
+
+- Правишь тексты/данные — только в `src/data/site.ts`, не в разметке компонентов.
+- Push в `main` = авто-деплой на Vercel. Деплой батчами, не на каждый коммит (см. корневой CLAUDE.md).
+- Переменных окружения нет — сайт полностью статический, `.env` не требуется.
+- Контент — плейсхолдеры (название бренда, домен, фото основателей, цены, даты сезона) ещё не финальные; см. раздел TODO в `DOCUMENTATION.md`.
+
+## ПОДДЕРЖКА ДОКУМЕНТАЦИИ (обязательное правило)
+
+- `DOCUMENTATION.md` и `DECISIONS.md` обязаны всегда отражать текущее состояние проекта. Держать их в актуальном состоянии — обязанность, а не опция.
+- После значимых изменений — обнови `DOCUMENTATION.md` и проставь новую дату «Последнее обновление».
+- После каждого принятого архитектурного или конвенционного решения — сразу добавь запись в `DECISIONS.md`.
+- Если правка кода расходится с документацией — обновляй документацию в той же задаче, не откладывай.
