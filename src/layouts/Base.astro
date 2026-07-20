@@ -42,8 +42,20 @@ const jsonLd = {
     <meta name="generator" content={Astro.generator} />
 
     <!-- Предзагрузка критических шрифтов (кириллица) — меньше мигания на первой загрузке. -->
-    <link rel="preload" href="/fonts/unbounded-cyrillic-600.woff2" as="font" type="font/woff2" crossorigin />
-    <link rel="preload" href="/fonts/inter-cyrillic-wght.woff2" as="font" type="font/woff2" crossorigin />
+    <link
+      rel="preload"
+      href="/fonts/unbounded-cyrillic-600.woff2"
+      as="font"
+      type="font/woff2"
+      crossorigin
+    />
+    <link
+      rel="preload"
+      href="/fonts/inter-cyrillic-wght.woff2"
+      as="font"
+      type="font/woff2"
+      crossorigin
+    />
 
     <title>{title}</title>
     <meta name="description" content={description} />
